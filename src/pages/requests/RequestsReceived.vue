@@ -1,23 +1,27 @@
 <template>
   <div>
-    <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+    <base-dialog
+      :show="!!error"
+      title="An error occurred!"
+      @close="handleError"
+    >
       <p>{{ error }}</p>
     </base-dialog>
     <section>
       <base-card>
         <header>
-          <h2>Requests Recieved</h2>
+          <h2>Requests Received</h2>
         </header>
         <base-spinner v-if="isLoading"></base-spinner>
         <ul v-else-if="hasRequests && !isLoading">
           <request-item
-            v-for="req in recievedRequests"
+            v-for="req in receivedRequests"
             :key="req.id"
             :email="req.userEmail"
             :message="req.message"
           ></request-item>
         </ul>
-        <h3 v-else>You haven't recieved any requests yet!</h3>
+        <h3 v-else>You haven't received any requests yet!</h3>
       </base-card>
     </section>
   </div>
@@ -37,7 +41,7 @@ export default {
     };
   },
   computed: {
-    recievedRequests() {
+    receivedRequests() {
       return this.$store.getters['requests/requests'];
     },
     hasRequests() {

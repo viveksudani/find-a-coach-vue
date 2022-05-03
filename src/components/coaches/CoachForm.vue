@@ -50,31 +50,31 @@
           v-model="areas.val"
           @blur="clearValidity('areas')"
         />
-        <label for="frontend">Frontend Developement</label>
+        <label for="frontend">Frontend Development</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="frontend"
+          id="backend"
           value="backend"
           v-model="areas.val"
           @blur="clearValidity('areas')"
         />
-        <label for="backend">Backend Developement</label>
+        <label for="backend">Backend Development</label>
       </div>
       <div>
         <input
           type="checkbox"
-          id="frontend"
+          id="career"
           value="career"
           v-model="areas.val"
           @blur="clearValidity('areas')"
         />
         <label for="career">Career Advisory</label>
       </div>
-      <p v-if="!areas.isValid">Atleast one expertise must be selected.</p>
+      <p v-if="!areas.isValid">At least one expertise must be selected.</p>
     </div>
-    <p v-if="!formIsValid">Please fix the above errors and submit again</p>
+    <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
     <base-button>Register</base-button>
   </form>
 </template>
@@ -84,11 +84,26 @@ export default {
   emits: ['save-data'],
   data() {
     return {
-      firstName: { val: '', isValid: true },
-      lastName: { val: '', isValid: true },
-      description: { val: '', isValid: true },
-      rate: { val: null, isValid: true },
-      areas: { val: [], isValid: true },
+      firstName: {
+        val: '',
+        isValid: true,
+      },
+      lastName: {
+        val: '',
+        isValid: true,
+      },
+      description: {
+        val: '',
+        isValid: true,
+      },
+      rate: {
+        val: null,
+        isValid: true,
+      },
+      areas: {
+        val: [],
+        isValid: true,
+      },
       formIsValid: true,
     };
   },
@@ -121,9 +136,11 @@ export default {
     },
     submitForm() {
       this.validateForm();
+
       if (!this.formIsValid) {
         return;
       }
+
       const formData = {
         first: this.firstName.val,
         last: this.lastName.val,

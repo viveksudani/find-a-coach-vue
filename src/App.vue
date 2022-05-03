@@ -14,21 +14,21 @@ export default {
   components: {
     TheHeader,
   },
-  computed:{
+  computed: {
     didAutoLogout() {
-      return this.$store.getters.didAutoLogout
-    }
+      return this.$store.getters.didAutoLogout;
+    },
   },
   created() {
-    this.$store.dispatch('tryLogin')
+    this.$store.dispatch('tryLogin');
   },
   watch: {
-    didAutoLogout(currValue, oldValue){
-      if(currValue & currValue !== oldValue){
-          this.$router.replace('/coches')
+    didAutoLogout(curValue, oldValue) {
+      if (curValue && curValue !== oldValue) {
+        this.$router.replace('/coaches');
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,7 +1,6 @@
 export default {
   async registerCoach(context, data) {
     const userId = context.rootGetters.userId;
-
     const coachData = {
       firstName: data.first,
       lastName: data.last,
@@ -26,17 +25,19 @@ export default {
       // error ...
     }
 
-    context.commit('registerCoach', { ...coachData, id: userId });
+    context.commit('registerCoach', {
+      ...coachData,
+      id: userId,
+    });
   },
-
   async loadCoaches(context, payload) {
     if (!payload.forceRefresh && !context.getters.shouldUpdate) {
       return;
     }
+
     const response = await fetch(
       `https://react-http-b817a-default-rtdb.firebaseio.com/coaches.json`
     );
-
     const responseData = await response.json();
 
     if (!response.ok) {

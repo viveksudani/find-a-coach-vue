@@ -17,7 +17,7 @@ export default {
     const mode = payload.mode;
     let url =
       'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDfZo5Qo5hdo_gFOl4WOp8iF7zOU8QiBnU';
-    if (mode == 'sigup') {
+    if (mode === 'sigup') {
       url =
         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDfZo5Qo5hdo_gFOl4WOp8iF7zOU8QiBnU';
     }
@@ -32,9 +32,10 @@ export default {
     });
 
     const responseData = await response.json();
+
     if (!response.ok) {
       const error = new Error(
-        responseData.message || 'Failed to authenticate.'
+        responseData.message || 'Failed to authenticate. Check your login data.'
       );
       throw error;
     }
